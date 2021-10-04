@@ -1,4 +1,4 @@
-import React, {Component, FormEvent} from "react";
+import React, {Component} from "react";
 import UserForm from "../dto/UserForm";
 import axios from 'axios';
 
@@ -8,15 +8,11 @@ type State = {
 
 class RecommendProcessController extends Component<UserForm, State> {
 
-    constructor(props: UserForm) {
-        super(props);
-    }
-
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
-                    userForm: new UserForm(position.coords.latitude, position.coords.longitude),
+                    userForm: new UserForm(position.coords.latitude.toString(), position.coords.longitude.toString(), new Set<string>()),
                 })
                 console.log("User Latitude: " + this.state.userForm.curLatitude);
                 console.log("User Longitude: " + this.state.userForm.curLongitude);
@@ -30,6 +26,7 @@ class RecommendProcessController extends Component<UserForm, State> {
 
     handleRangeChange = (e: React.FormEvent<HTMLInputElement>) => {
         const {value} = e.currentTarget;
+
         this.state.userForm.range = value;
 
         console.log(this.state.userForm.range);
@@ -38,11 +35,11 @@ class RecommendProcessController extends Component<UserForm, State> {
     handleCategoryChange = (e: React.FormEvent<HTMLInputElement>) => {
         const {value} = e.currentTarget;
 
-        if(this.state.userForm.candidateCategory == undefined) {
+        if(this.state.userForm.candidateCategory === undefined) {
             this.state.userForm.candidateCategory = new Set<string>();
         }
 
-        if(e.currentTarget.checked == false) {
+        if(e.currentTarget.checked === false) {
 
             this.state.userForm.candidateCategory.delete(value);
         }

@@ -17,4 +17,5 @@
 
 ## 현재 구현기능
 ![image](https://user-images.githubusercontent.com/19809346/136498042-b6848986-327b-4791-b13d-0ed5d189d96d.png)
+![요청 페이로드](https://user-images.githubusercontent.com/19809346/136498620-87d70170-d8cc-40b2-a713-e1ac5f2b55ba.PNG)
 - 거리 선택을 하고, 카테고리를 선택하면 백앤드 서버(Spring으로 구현)에 유저가 선택한 정보를 전송하는 기능까지 만들었습니다.

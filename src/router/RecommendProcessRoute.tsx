@@ -7,7 +7,7 @@ class RecommendProcessRoute extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path = '/' component={ RecommendProcessController}/>
+                    <Route exact path = '/' component={ RecommendProcessController }/>
                 </Switch>
             </Router>
         )

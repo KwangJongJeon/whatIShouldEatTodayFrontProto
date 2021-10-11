@@ -5,13 +5,12 @@ class UserForm {
     private _range : string | undefined;
 
 
-    constructor(curLatitude: string, curLongitude: string, candidateCategory?: Set<string> | undefined, range?: string | undefined) {
+    constructor(curLatitude: string, curLongitude: string, candidateCategory?: Set<string>,  range?: string | undefined) {
         this._curLatitude = curLatitude;
         this._curLongitude = curLongitude;
         this._candidateCategory = candidateCategory;
         this._range = range;
     }
-
 
     get curLatitude(): string {
         return this._curLatitude;
@@ -29,6 +28,7 @@ class UserForm {
         this._curLongitude = value;
     }
 
+
     get candidateCategory(): Set<string> | undefined {
         return this._candidateCategory;
     }
@@ -36,7 +36,6 @@ class UserForm {
     set candidateCategory(value: Set<string> | undefined) {
         this._candidateCategory = value;
     }
-
 
     get range(): string | undefined {
         return this._range;

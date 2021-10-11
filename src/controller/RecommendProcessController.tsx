@@ -4,7 +4,7 @@ import axios from 'axios';
 
 type State = {
     userForm: UserForm;
-}
+};
 
 class RecommendProcessController extends Component<UserForm, State> {
 
@@ -12,7 +12,7 @@ class RecommendProcessController extends Component<UserForm, State> {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
-                    userForm: new UserForm(position.coords.latitude.toString(), position.coords.longitude.toString(), new Set<string>()),
+                    userForm: new UserForm(position.coords.latitude.toString(), position.coords.longitude.toString(), new Set<string>(), "1000"),
                 })
                 console.log("User Latitude: " + this.state.userForm.curLatitude);
                 console.log("User Longitude: " + this.state.userForm.curLongitude);
@@ -34,17 +34,14 @@ class RecommendProcessController extends Component<UserForm, State> {
 
     handleCategoryChange = (e: React.FormEvent<HTMLInputElement>) => {
         const {value} = e.currentTarget;
+        const list = [];
 
-        if(this.state.userForm.candidateCategory === undefined) {
-            this.state.userForm.candidateCategory = new Set<string>();
-        }
 
         if(e.currentTarget.checked === false) {
-
-            this.state.userForm.candidateCategory.delete(value);
+            this.state.userForm.candidateCategory?.delete(value);
         }
         else {
-            this.state.userForm.candidateCategory.add(value);
+            this.state.userForm.candidateCategory?.add(value);
         }
 
         console.log(this.state.userForm.candidateCategory);
@@ -58,13 +55,29 @@ class RecommendProcessController extends Component<UserForm, State> {
 
     onSubmit = async () => {
         if(this.state.userForm.checkUndefinedIsNotExist()) {
+
+            const categories = [];
+            if(this.state.userForm.candidateCategory !== undefined) {
+                for (const entry of this.state.userForm.candidateCategory) {
+                    categories.push(entry);
+                }
+            }
+
+
             axios({
                 url: '/api/recommend',
                 method: 'post',
-                headers: {"Access-Control-Allow-Origin": "*"},
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                },
                 baseURL: 'http://localhost:8080',
                 withCredentials: false,
-                data: this.state.userForm
+                data: {
+                    latitude: this.state.userForm.curLatitude,
+                    longitude: this.state.userForm.curLongitude,
+                    range: this.state.userForm.range,
+                    categories: categories
+                }
             }).then((res) => {
                 alert("res: " + res)
                 console.log({res});
@@ -103,7 +116,7 @@ class RecommendProcessController extends Component<UserForm, State> {
                     <fieldset >
                         <legend>메뉴 카테고리 선택</legend>
                         <div>
-                            <input type={"checkbox"} id={"koreanFood"} name={"menuCategory"} value={"koreanFood"} onChange={this.handleCategoryChange}/>
+                            <input type={"checkbox"} id={"koreanFood"} name={"menuCategory"} value={"KoreanFood"} onChange={this.handleCategoryChange}/>
                                 <label htmlFor={"koreanFood"}>한식</label>
                         </div>
                         <div>

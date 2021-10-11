@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+# 오늘 뭐먹지 프로젝트 개요
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 근처의 식당을 탐색한 뒤 식당을 추천해주는 웹 앱
 
-## Available Scripts
+## 예상 기능
 
-In the project directory, you can run:
+- 거리 등의 옵션에 따른 식사 메뉴 추천
+- 결과로 나온 식당에 대한 리뷰 제공
+- 해당 식당에 대한 가는 길 지도 제공
+- OPT) 근처 식당에 대한 예약 기능 제공
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 프로토타입 개요
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 이 리포지토리의 프로젝트는 직접 프로젝트를 만들기 전의 프로토타입으로써 아직 확인하지 못한 요구사항등을 알아내기 위해 만들어 본 프로젝트입니다.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 현재 구현기능
+![image](https://user-images.githubusercontent.com/19809346/136498042-b6848986-327b-4791-b13d-0ed5d189d96d.png)
+![요청 페이로드](https://user-images.githubusercontent.com/19809346/136498620-87d70170-d8cc-40b2-a713-e1ac5f2b55ba.PNG)
+- 거리 선택을 하고, 카테고리를 선택하면 백앤드 서버(Spring으로 구현)에 유저가 선택한 정보를 전송하는 기능까지 만들었습니다.
